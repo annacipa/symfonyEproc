@@ -1,0 +1,53 @@
+{% extends 'home.html.twig' %}
+{#{% block title %}Aplikim index{% endblock %}#}
+
+
+{% block bodymain %}
+    <div class="container">
+    {% block body %}
+    <h1>Aplikim index</h1>
+
+        <a href="{{ path('aplikim_new') }}"><button type="button" class="btn btn-warning">Create new</button></a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Fondlimit</th>
+                <th>Adresedorezimi</th>
+                <th>Datehapje</th>
+                <th>Datembyllje</th>
+                <th>Licence</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for aplikim in aplikims %}
+            <tr>
+                <td>{{ aplikim.id }}</td>
+                <td>{{ aplikim.title }}</td>
+                <td>{{ aplikim.description }}</td>
+                <td>{{ aplikim.fondlimit }}</td>
+                <td>{{ aplikim.adresedorezimi }}</td>
+                <td>{{ aplikim.datehapje ? aplikim.datehapje|date('Y-m-d') : '' }}</td>
+                <td>{{ aplikim.datembyllje ? aplikim.datembyllje|date('Y-m-d') : '' }}</td>
+                <td>{{ aplikim.licence }}</td>
+                <td>
+                    <a href="{{ path('aplikim_show', {'id': aplikim.id}) }}"><button type="button" class="btn btn-outline-warning btn-sm">show</button></a>
+                    <a href="{{ path('aplikim_edit', {'id': aplikim.id}) }}"><button type="button" class="btn btn-outline-warning btn-sm">edit</button></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+{% endblock %}
+    </div>
+{% endblock bodymain %}
+

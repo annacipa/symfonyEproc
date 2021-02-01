@@ -1,0 +1,50 @@
+{% block bodymain %}
+{% block title %}Form{% endblock %}
+
+{% block body %}
+    <h1>Form</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ form.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ form.title }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ form.description }}</td>
+            </tr>
+            <tr>
+                <th>Fondlimit</th>
+                <td>{{ form.fondlimit }}</td>
+            </tr>
+            <tr>
+                <th>Adresedorezimi</th>
+                <td>{{ form.adresedorezimi }}</td>
+            </tr>
+            <tr>
+                <th>Datehapje</th>
+                <td>{{ form.datehapje ? form.datehapje|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Datembyllje</th>
+                <td>{{ form.datembyllje ? form.datembyllje|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Licence</th>
+                <td>{{ form.licence }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('form_index') }}">back to list</a>
+
+    <a href="{{ path('form_edit', {'id': form.id}) }}">edit</a>
+
+    {{ include('form/_delete_form.html.twig') }}
+{% endblock %}
+{% endblock %}

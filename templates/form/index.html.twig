@@ -1,0 +1,47 @@
+{% extends 'home.html.twig' %}
+{% block title %}Form index{% endblock %}
+
+{% block bodymain %}
+    <h1>Form index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Fondlimit</th>
+                <th>Adresedorezimi</th>
+                <th>Datehapje</th>
+                <th>Datembyllje</th>
+                <th>Licence</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for form in forms %}
+            <tr>
+                <td>{{ form.id }}</td>
+                <td>{{ form.title }}</td>
+                <td>{{ form.description }}</td>
+                <td>{{ form.fondlimit }}</td>
+                <td>{{ form.adresedorezimi }}</td>
+                <td>{{ form.datehapje ? form.datehapje|date('Y-m-d') : '' }}</td>
+                <td>{{ form.datembyllje ? form.datembyllje|date('Y-m-d') : '' }}</td>
+                <td>{{ form.licence }}</td>
+                <td>
+                    <a href="{{ path('form_show', {'id': form.id}) }}"><button>Show </button></a>
+                    <a href="{{ path('form_edit', {'id': form.id}) }}"><button>Edit</button></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('form_new') }}"><button>Create new </button></a>
+{% endblock %}
+
